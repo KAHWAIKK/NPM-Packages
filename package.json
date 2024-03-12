@@ -4,13 +4,14 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "start": "node server",
-        "dev": "nodemon server"
+        "start": "node serverWithExpress",
+        "dev": "nodemon serverWithExpress"
     },
     "author": "kahwai",
     "license": "ISC",
     "dependencies": {
         "date-fns": "^3.3.1",
+        "express": "^4.18.3",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
