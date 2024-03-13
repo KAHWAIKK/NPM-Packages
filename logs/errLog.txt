@@ -1,1 +1,4 @@
 2024-03-1316:32:10	918eb672-3773-42f0-9707-4078b77ec426	Error : not allowed to access by CORS!!
+2024-03-1323:15:19	bf31479e-9312-4c38-9c08-e3f3370fceda	SyntaxError : Unexpected token 'k', ..."stname" : kevin,
+  "... is not valid JSON
+2024-03-1323:15:56	6d034117-c7ad-4729-b245-7899206b979d	SyntaxError : Expected ',' or '}' after property value in JSON at position 30

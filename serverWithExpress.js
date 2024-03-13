@@ -36,6 +36,7 @@ app.use( logger)
 const whitelist = [
     'https://www.yourdomain.com'/* only for request in your site will access your backend server */,
     'http://localhost:3500' , 
+    'http://127.0.0.1:443',
     'http://127.0.0.1:5500'/* only your local server will access your backend server */,
     'https://www.google.com']
 
@@ -75,70 +76,26 @@ app.use(express.json())
 //3. built-in middleware to handle static files e.g files that should be available to the public e.g images, photos and css files
 
 app.use(express.static(path.join(__dirname, '/public')))
+app.use('/subdir' ,express.static(path.join(__dirname, '/public')))
 
 
 
 //adding an express route
 
-//we will use the get request
-app.get('^/&|/index(.html)?', (req, res) => {
-    //res.send(`hello world`)
-    //the browser tab has the words hello world
-    //for the get request we will send hello world to the front end(index page)
 
-    //lets go ahead and serve the index page that is in our views folder
-    res.sendFile(path.join(__dirname, 'views' , 'index.html'))
-})
-//adding a second route
-app.get('/new-page(.html)?', (req, res) => {
-    //res.send(`hello world`)
-    //the browser tab has the words hello world
-    //for the get request we will send hello world to the front end(index page)
+//applying the route
 
-    //lets go ahead and serve the index page that is in our views folder
-    res.sendFile(path.join(__dirname, 'views' , 'new-page.html'))//sends the new-page.html file to the browser
-})
+app.use('/' , require('./routes/root'))
+app.use('/subdir' , require('./routes/subdir'))
 
-//handling redirects with express
-app.get('/old-page(.html)?', (req, res) => {
-    //res.send(`hello world`)
-    //the browser tab has the words hello world
-    //for the get request we will send hello world to the front end(index page)
-
-    //lets go ahead and serve the index page that is in our views folder
-    res.redirect(301 ,'/new-page.html')//sends the new-page.html file to the browser
-})
-
-//chaining route handlers
-
-const one = (req, res, next) => {
-    console.log('one')
-    next()
-}
-
-const two = (req, res, next) => {
-    console.log('two')
-    next()
-}
-
-const three = (req, res, ) => {
-    console.log('three')
-    res.send('Finished')
-}
-
+//creating a REST API router
+app.use('/employees' , require('./routes/api/employees'))
 
 //adding a custom 404 error page
 
 app.get('/*' , (req, res) => {
     res.status(404).sendFile(path.join(__dirname, 'views' , '404.html'))//sends the 404.html file to the browser with a status code of 404
 })
-
-//Route handlers
-
-
-//calling then in an array 
-app.get('/chain(.html)?' , [one, two, three])
-
 
 
 /* CREATING A CUSTOM ERROR HANDLER */
