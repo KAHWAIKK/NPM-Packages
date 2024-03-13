@@ -19,17 +19,24 @@ const logEvents = async(message, logName) => {
     const logItem = `${dateTime}\t${uuid()}\t${message}\n`
     console.log(logItem)
     try {
-        if(!fs.existsSync(path.join(__dirname, 'logs'))){
-            await fsPromises.mkdir(path.join(__dirname, 'logs'))
+        if(!fs.existsSync(path.join(__dirname,'..', 'logs'))){
+            await fsPromises.mkdir(path.join(__dirname,'..', 'logs'))
         }
-        await fsPromises.appendFile(path.join(__dirname, 'logs', logName), logItem)
+        await fsPromises.appendFile(path.join(__dirname,'..', 'logs', logName), logItem)
     } catch (err) {
         console.log(err)
     }
 }
 
+//this function was  added later when using custom logger middleware
+const logger = (req, res,next) => {
+    logEvents(`${req.method}\t ${req.headers.origin}//\t${req.url}`, 'reqLog.txt'); /* accepts two parameters 1. the message and the file it should write to
+     req.headers.origin paramater tells us where  the  request is coming from */
+    console.log(`${req.method} ${req.path}`)//returns (the method)GET /jh  and the path requested GET /css/style.css
+    next();
+}
 //Exporting logEvents funtion and we will use it in the index.js
-module.exports =logEvents
+module.exports = {logEvents,logger}
 
 // console.log(format(new Date,'yyyy-MM-dd\nHH:mm:ss'))
 //2024-02-2812:13:46
