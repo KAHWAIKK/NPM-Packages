@@ -129,3 +129,17 @@
 2024-03-1323:19:31	305fb4c1-effb-4571-be7f-58f20895db1e	DELETE	 undefined//	/employees/3
 2024-03-1323:19:38	1d66e938-ef0d-420b-bb93-378d70889661	DELETE	 undefined//	/employees
 2024-03-1323:19:50	57d52f03-9413-4956-8201-62491c15c947	GET	 undefined//	/employees/1
+2024-03-1410:51:47	e5b062c7-58ef-4790-bef7-6c06609718e5	GET	 undefined//	/employees
+2024-03-1410:53:07	e040ca53-c9dc-4ed2-86e5-a840fd956bfd	POST	 undefined//	/employees
+2024-03-1410:53:29	6ed4b484-96ac-45cd-b85d-1d109b5e97c3	POST	 undefined//	/employees
+2024-03-1410:54:55	bb8f6639-8eda-461b-8fa8-499aa8c05b14	POST	 undefined//	/employees
+2024-03-1411:00:54	956c8940-54c8-4ce5-b517-11f7b67752b4	PUT	 undefined//	/employees
+2024-03-1411:01:05	e49f2b59-85f9-4d1b-a859-5bedd0ada58d	PUT	 undefined//	/employees
+2024-03-1411:01:24	6835c00c-1686-4f17-b359-cb29d8155d7e	DELETE	 undefined//	/employees
+2024-03-1411:01:31	8ef25455-fe00-4425-8e4b-3f2171a1e5b3	DELETE	 undefined//	/employees
+2024-03-1411:01:38	553482a4-9d4b-4b04-9d4b-5479fdf6b9c7	POST	 undefined//	/employees
+2024-03-1411:01:51	ba508d4c-0417-4bb5-95ca-9a4ff9f5fb87	GET	 undefined//	/employees/2
+2024-03-1411:02:06	930bf122-d271-45c5-96c8-1629c13dcf93	POST	 undefined//	/employees
+2024-03-1411:02:33	437ce19f-0717-4109-886b-7d8e9953935a	PUT	 undefined//	/employees
+2024-03-1411:02:50	c00adc59-e079-440b-a458-9f71e5e3d7a0	POST	 undefined//	/employees
+2024-03-1411:03:09	e373364f-d897-4e1a-82b8-d1a3d75291dc	GET	 undefined//	/employees/1

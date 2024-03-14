@@ -2,3 +2,5 @@
 2024-03-1323:15:19	bf31479e-9312-4c38-9c08-e3f3370fceda	SyntaxError : Unexpected token 'k', ..."stname" : kevin,
   "... is not valid JSON
 2024-03-1323:15:56	6d034117-c7ad-4729-b245-7899206b979d	SyntaxError : Expected ',' or '}' after property value in JSON at position 30
+2024-03-1410:53:07	52549793-6c78-4815-9ba0-0fac7c90d0f3	TypeError : data.setEmployees is not a function
+2024-03-1410:53:29	bc0b7774-c83f-4cbe-b47a-110c00870f5b	TypeError : data.setEmployees is not a function
