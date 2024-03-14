@@ -60,6 +60,10 @@ app.use(express.static(path.join(__dirname, '/public')))
 app.use('/' , require('./routes/root'))
 /* app.use('/subdir' , require('./routes/subdir')) */
 
+//adding the register router
+app.use('/register' , require('./routes/register'))
+//adding the authorization router
+app.use('/auth' , require('./routes/auth'))
 //creating a REST API router
 app.use('/employees' , require('./routes/api/employees'))
 
