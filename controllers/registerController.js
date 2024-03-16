@@ -23,7 +23,12 @@ const handleNewUser = async (req, res) => {
         //encrypt the password using bycrypt
         const hashedPassword = await bcrypt.hash(password, 10);//no 10 is salting the password ,it add another layer of security even if the database was hacked
         //store the new user
-        const newUser = { "username": user , "password": hashedPassword };
+        const newUser = { 
+            
+             "username": user ,
+             "roles": { "User" : 2001},
+             "password": hashedPassword 
+            };
         usersDB.setUsers([...usersDB.users, newUser]);
 
         //writing to uor json file

@@ -30,10 +30,16 @@ const handleLogin = async (req, res) => {
     //evaluate password
     const match = await bcrypt.compare(password, foundUser.password)
     if(match) {
+        //defining roles
+        const roles = Object.values(foundUser.roles)
         //create JWT token
-        const accessToken = jwt.sign({
+        const accessToken = jwt.sign(
+        {
             //you would not like to parse the password that would compromise your security, we will parse in the this object
-            "username": foundUser.username
+            "UserInfo" : {
+                "username": foundUser.username,
+                "roles" : roles//we have changed the payload for this JWT token to include the roles
+            }   
         },
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: '30s'}
