@@ -8,6 +8,9 @@ const cors = require('cors');
 const corsOptions = require('./config/corsOptions')
 const { logger,/* logEvents */} = require('./middleware/logEvents');
 const errorHandler = require('./middleware/errorHandler');
+const verifyJWT = require('./middleware/verifyJWT');
+const cookieParser = require('cookie-parser')
+const credentials = require('./middleware/credentials')
 
 const PORT  = process.env.PORT || 3500
 
@@ -29,6 +32,10 @@ Middleware functions in Express can be used for various purposes, such as loggin
 
 app.use( logger)
 
+//Handle options credentials check - before CORS!
+//add fetch cookies credentials requirement 
+
+app.use(credentials)
 
 //CROSS ORIGIN RESOURCE SHARING
 app.use(cors(corsOptions))//no more cors errors ,however this does leave it open,for a public api this would be fine but for private application you would want to use a whitelist 
@@ -45,6 +52,9 @@ app.use(express.urlencoded({ extended: false}))
 //2. built-in middleware to handle json data i.e if json data is submitted it helps get the data in the json object
 app.use(express.json())
 
+
+//middleware for cookies
+app.use(cookieParser())
 //3. built-in middleware to handle static files e.g files that should be available to the public e.g images, photos and css files
 
 app.use(express.static(path.join(__dirname, '/public')))
@@ -64,7 +74,13 @@ app.use('/' , require('./routes/root'))
 app.use('/register' , require('./routes/register'))
 //adding the authorization router
 app.use('/auth' , require('./routes/auth'))
+app.use('/refresh' , require('./routes/refresh'))
+app.use('/logout' , require('./routes/logout'))
+
+
 //creating a REST API router
+
+app.use(verifyJWT);//any route after this will use JWT token for authorization i.e since middleware gets implemented like a waterfall, the routes above will not have JWT token authorization
 app.use('/employees' , require('./routes/api/employees'))
 
 //adding a custom 404 error page

@@ -11,12 +11,7 @@
 /* you would want to take out the localhost server out but on;ly leave your domain site after development */
 
 
-const whitelist = [
-    'https://www.yourdomain.com'/* only for request in your site will access your backend server */,
-    'http://localhost:3500' , 
-    'http://127.0.0.1:443',
-    'http://127.0.0.1:5500'/* only your local server will access your backend server */,
-    'https://www.google.com']
+const allowedOrigins = require('./allowedOrigins');
 
 //create a function that will allow cors to prevent other users from accessing the backend server if not in the whitelist
 
@@ -24,7 +19,7 @@ const whitelist = [
 /* this is from documentation */
 const corsOptions = {
     origin : ( origin , callback) => {
-        if ( whitelist.indexOf(origin) !== -1  || !origin 
+        if ( allowedOrigins.indexOf(origin) !== -1  || !origin 
         /* during development you would want to do this, you will remove it when you go live */ ) {
             callback( null , true)
         } else {
