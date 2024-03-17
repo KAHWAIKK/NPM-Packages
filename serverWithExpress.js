@@ -1,5 +1,5 @@
 
-
+require('dotenv').config();
 //Creating a minimal express server app 
 const express = require('express');
 const app = express();
@@ -11,8 +11,14 @@ const errorHandler = require('./middleware/errorHandler');
 const verifyJWT = require('./middleware/verifyJWT');
 const cookieParser = require('cookie-parser')
 const credentials = require('./middleware/credentials')
+const mongoose = require('mongoose')
+const connectDB = require('./config/dbConn')
 
 const PORT  = process.env.PORT || 3500
+
+//connect to MongoDB
+
+connectDB();
 
 /* MIDDLEWARE */
 
@@ -94,6 +100,14 @@ app.get('/*' , (req, res) => {
 
 app.use(errorHandler)
 
-app.listen(PORT , () => {
-    console.log(`server running on port ${PORT}`)
+
+//we would not like to listen to u our server if we do not connect to database, so if connection fails we should not listen to the server. we use mongoose events that will only listen one time
+mongoose.connection.once("open" , () => {
+    console.log('connected to mongoDB');
+    //we then listen to server only if we have connected to the database
+    app.listen(PORT , () => {
+        console.log(`server running on port ${PORT}`)
+    })
 })
+
+
